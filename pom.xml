@@ -4,7 +4,7 @@
 
 	<groupId>com.github.Premvikash</groupId>
 	<artifactId>Example</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Example</name>
 	<packaging>war</packaging>
 	<url>https://github.com/Premvikash/</url>
@@ -31,6 +31,17 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+                <dependency>
+       	               <groupId>org.sonarsource.scanner.maven</groupId>
+                       <artifactId>sonar-maven-plugin</artifactId>
+                       <version>3.2</version>
+               </dependency> 
+               <dependency>
+    			<groupId>app.webapp</groupId>
+    			<artifactId>SampleWebApp</artifactId>
+    			<version>1.0</version>
+    			<type>war</type>
+	     </dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -49,6 +60,33 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+                        <plugin>
+  				<groupId>org.apache.tomcat.maven</groupId>
+  				<artifactId>tomcat7-maven-plugin</artifactId>
+  				<version>2.2</version>
+  				<configuration> 
+   					<url>http://54.167.35.209:8080/manager/text</url>
+   					<server>TomcatServer</server>
+   					<path>/webapp</path>
+ 				</configuration> 
+		       </plugin>
 		</plugins>
 	</build>
+ <!-- <distributionManagement>
+    	 <snapshotRepository>
+            <id>jfrog-snapshots</id>
+            <url>http://54.160.250.177:8082/artifactory/local-snapshot-repo/</url>
+        </snapshotRepository>
+        <repository>
+           <id>jfrog-releases</id>
+           <url>http://54.160.250.177:8081/artifactory/local-release-repo</url>
+        </repository>
+      </distributionManagement>   -->
+     
+     <repositories>
+        <repository>
+          <id>jfrog-virtual</id>
+          <url>http://54.160.250.177:8082/artifactory/maven-common-repo/</url>
+       </repository>
+    </repositories>
 </project>
